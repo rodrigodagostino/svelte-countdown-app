@@ -1,84 +1,148 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+/**
+ * Fonts
+ */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Poppins";
+  font-style: normal;
   font-weight: 400;
+  src: url("./assets/fonts/poppins-v20-latin-regular.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+ */
+      url("./assets/fonts/poppins-v20-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/**
+ * Variables
+ */
+:root {
+  --font-main: "Poppins", Avenir, Helvetica, Arial, sans-serif;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --emerald-400: #34d399;
+  --teal-600: #0d9488;
+
+  --white: #f3f3f5;
+  --gray-050: #ededf0;
+  --gray-100: #e1e1e6;
+  --gray-150: #d2d2da;
+  --gray-200: #c3c3ce;
+  --gray-300: #a4a6b5;
+  --gray-400: #86889d;
+  --gray-500: #686a84;
+  --gray-600: #585a70;
+  --gray-650: #515266;
+  --gray-700: #494a5c;
+  --gray-750: #414253;
+  --gray-800: #393a49;
+  --gray-850: #31323f;
+  --gray-900: #2a2a35;
+  --gray-950: #22222b;
+  --black: #15151a;
+}
+
+/**
+ * Reset styles.
+ */
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+  box-sizing: inherit;
+}
+
+/* Reset margins and paddings on most elements */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+p,
+pre,
+blockquote,
+figure,
+hr {
+  margin: 0;
+  padding: 0;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: var(--white);
+  transition: outline 0.32s ease;
+  outline: 1px dotted transparent;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+a:focus {
+  outline: 1px dotted var(--white);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Reset forms and buttons */
+input,
+textarea,
+select,
+button {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
 }
 
-.card {
-  padding: 2em;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+input,
+textarea,
+button {
+  border: 1px solid gray;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  border-radius: 0;
+  padding: 0.75em 1em;
+  background-color: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+button * {
+  pointer-events: none;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Easy responsive for media elements */
+embed,
+iframe,
+img,
+object,
+video {
+  display: block;
+  max-width: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+/* Useful table styles */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/**
+ * Base styles.
+ */
+body {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  color: var(--gray-600);
+  background-color: var(--gray-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.app {
+  display: flex;
+  flex-direction: column;
 }
