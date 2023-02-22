@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let size: '1rem' | '1.5rem' | '2.5rem'
+  export let size: '16px' | '24px' | '40px'
 </script>
 
 <svg

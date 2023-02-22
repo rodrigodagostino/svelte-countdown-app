@@ -1,21 +1,36 @@
 <script lang="ts">
-  import BaseButton from './Button.svelte'
+  import { pauseTimer, resetTimer, startTimer, timer } from '../store'
+  import Button from './Button.svelte'
   import CountdownTimerDisplay from './CountdownTimerDisplay.svelte'
   import CountdownProgressRing from './CountdownTimerProgressRing.svelte'
-  import countdownBuzzer from '../assets/audio/ding-dong.wav'
+  import buzzer from '../assets/audio/ding-dong.wav'
+
+  let audio
+
+  $: if ($timer.currentTime <= 0 && $timer.status === 'running') {
+    audio.play()
+  }
+
+  const toggleTimerAction = () =>
+    $timer.status === 'idle' ? startTimer() : pauseTimer()
 </script>
 
-<form class="countdown">
+<form class="countdown" on:submit|preventDefault={toggleTimerAction}>
   <div class="countdown-tracking row">
     <CountdownProgressRing diameter={300} strokeWidth={16} />
     <CountdownTimerDisplay />
   </div>
   <div class="countdown-actions row">
-    <BaseButton icon="undo" variant="fill" />
-    <BaseButton type="submit" icon="play" variant="fill" size="medium" />
+    <Button variant="fill" icon="undo" on:click={resetTimer} />
+    <Button
+      type="submit"
+      variant="fill"
+      size="medium"
+      icon={$timer.status === 'idle' ? 'play' : 'pause'}
+    />
   </div>
-  <audio controls>
-    <source src={countdownBuzzer} type="audio/wav" />
+  <audio controls bind:this={audio}>
+    <source src={buzzer} type="audio/wav" />
   </audio>
 </form>
 

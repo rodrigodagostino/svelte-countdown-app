@@ -18,6 +18,7 @@
   {href}
   target={target !== '_self' ? target : null}
   type={tag === 'button' ? type : null}
+  on:click
 >
   {#if icon}
     <Icon {icon} {size} />
@@ -52,7 +53,7 @@
         /* The next line is only used to allow the box-shadow transition to work */
           inset 0.125em 0.125em 0.5em transparent,
         inset -1px -1px 1px rgba(0, 0, 0, 0.05),
-        inset -2px -2px 1rem -0.5rem rgba(255, 255, 255, 1),
+        inset -2px -2px 16px -0.5rem rgba(255, 255, 255, 1),
         0.25em 0.25em 0.5em 0.125em rgba(0, 0, 0, 0.15);
 
       &:focus,
@@ -78,15 +79,15 @@
     }
 
     &--small {
-      font-size: 1rem;
+      font-size: 16px;
     }
 
     &--medium {
-      font-size: 1.5rem;
+      font-size: 24px;
     }
 
     &--large {
-      font-size: 2.5rem;
+      font-size: 40px;
     }
   }
 </style>

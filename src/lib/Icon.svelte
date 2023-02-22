@@ -17,9 +17,9 @@
   }
 
   const sizeInNumbers = {
-    small: '1rem',
-    medium: '1.5rem',
-    large: '2.5rem',
+    small: '16px',
+    medium: '24px',
+    large: '40px',
   }
 </script>
 

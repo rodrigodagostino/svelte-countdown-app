@@ -1,10 +1,17 @@
 <script lang="ts">
+  import { timer } from '../store'
+
   export let diameter: number = 300
   export let strokeWidth: number = 16
 
   let strokeDasharray = (diameter - strokeWidth) * Math.PI
-  let strokeDashoffset = null
-  $: trackActiveSegmentTransition = 'stroke-dashoffset 100ms linear'
+  $: strokeDashoffset = !$timer.initialTime
+    ? null
+    : (strokeDasharray / 100) *
+      (100 - ($timer.currentTime * 100) / $timer.initialTime)
+  $: trackActiveSegmentTransition = `stroke-dashoffset ${
+    $timer.status === 'idle' ? '1s' : '100ms'
+  } linear`
 </script>
 
 <div class="progress-ring-container">
