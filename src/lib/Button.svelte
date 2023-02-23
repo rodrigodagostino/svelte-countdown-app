@@ -88,15 +88,15 @@
     }
 
     &--small {
-      font-size: 16px;
+      font-size: 1rem;
     }
 
     &--medium {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
 
     &--large {
-      font-size: 40px;
+      font-size: 2.5rem;
     }
   }
 </style>

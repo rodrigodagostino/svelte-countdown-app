@@ -143,7 +143,7 @@
 
   .time-units {
     font-family: var(--font-main);
-    font-size: 40px;
+    font-size: 2.5rem;
     text-align: center;
     max-width: 4rem;
     background-color: transparent;
@@ -157,7 +157,7 @@
   }
 
   .separator {
-    font-size: 40px;
+    font-size: 2.5rem;
     margin-top: 2.6875rem;
   }
 </style>
