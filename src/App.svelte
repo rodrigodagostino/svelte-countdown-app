@@ -11,7 +11,7 @@
 <footer class="app-footer">
   <div class="container">
     <a
-      href="https://github.com/rodrigodagostino/vue-countdown-app"
+      href="https://github.com/rodrigodagostino/svelte-countdown-app"
       target="_blank"
       rel="noreferrer"
     >
