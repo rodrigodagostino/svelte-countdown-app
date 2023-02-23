@@ -1,50 +1,59 @@
 <script lang="ts">
   import Icon from './Icon.svelte'
 
-  export let href = null
+  export let href: string | null = null
   export let target: '_self' | '_blank' = '_self'
   export let type: 'button' | 'submit' = 'button'
   export let variant: 'fill' | 'flat' = 'flat'
   export let size: 'small' | 'medium' | 'large' = 'small'
   export let icon: 'chevron-down' | 'chevron-up' | 'pause' | 'play' | 'undo' =
     null
-
-  const tag = href ? 'a' : 'button'
 </script>
 
-<svelte:element
-  this={tag}
-  class={`button button--${variant} button--${size}`}
-  {href}
-  target={target !== '_self' ? target : null}
-  type={tag === 'button' ? type : null}
-  on:click
->
-  {#if icon}
-    <Icon {icon} {size} />
-  {/if}
-  {#if $$props.slot}
-    <span class="button__text">
-      <slot />
-    </span>
-  {/if}
-</svelte:element>
+{#if href}
+  <a class={`button button--${variant} button--${size}`} {href} {target}>
+    {#if icon}
+      <Icon {icon} {size} />
+    {/if}
+    {#if $$slots.default}
+      <span class="button__text">
+        <slot />
+      </span>
+    {/if}
+  </a>
+{:else}
+  <button class={`button button--${variant} button--${size}`} {type} on:click>
+    {#if icon}
+      <Icon {icon} {size} />
+    {/if}
+    {#if $$slots.default}
+      <span class="button__text">
+        <slot />
+      </span>
+    {/if}
+  </button>
+{/if}
 
 <style lang="scss">
   .button {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.875em 1em;
+    border: none;
+    border-radius: 0.75em;
+    outline: none;
     font-family: var(--font-main);
     font-weight: 600;
     text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    border-radius: 0.75em;
-    padding: 0.875em 1em;
-    outline: none;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
+    text-decoration: none;
     transition: color 0.24s ease, box-shadow 0.12s ease;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 3px dashed currentColor;
+    }
 
     &--fill {
       background-color: var(--gray-100);
@@ -74,7 +83,7 @@
     &--flat {
       &:focus,
       &:hover {
-        color: var(--emerald-400);
+        color: var(--emerald-500);
       }
     }
 
