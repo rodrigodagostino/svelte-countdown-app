@@ -15,76 +15,84 @@ export const timer = writable<Timer>({
 })
 
 const setStatus = (value) => {
-  timer.update((prevValue) => ({
-    ...prevValue,
+  timer.update((currData) => ({
+    ...currData,
     status: value,
   }))
 }
 
 export const setInitialTime = (value) => {
-  timer.update((prevValue) => ({
-    ...prevValue,
+  timer.update((currData) => ({
+    ...currData,
     initialTime: value,
   }))
 }
 
 export const setCurrentTime = (value) => {
-  timer.update((prevValue) => ({
-    ...prevValue,
+  timer.update((currData) => ({
+    ...currData,
     currentTime: value,
   }))
 }
 
 export const increaseTime = (value) => {
   pauseTimer()
-  let timerInstance
-  timer.subscribe((prevValue) => (timerInstance = prevValue))
-  setInitialTime(timerInstance.currentTime + value)
-  setCurrentTime(timerInstance.currentTime + value)
+
+  let timerRef
+  timer.subscribe((currData) => (timerRef = currData))
+
+  setInitialTime(timerRef.currentTime + value)
+  setCurrentTime(timerRef.currentTime + value)
 }
 
 export const decreaseTime = (value) => {
   pauseTimer()
-  let timerInstance
-  timer.subscribe((prevValue) => (timerInstance = prevValue))
-  if (timerInstance.initialTime - value < 0) return
-  setInitialTime(timerInstance.initialTime - value)
-  setCurrentTime(timerInstance.currentTime - value)
+  let timerRef
+
+  timer.subscribe((currData) => (timerRef = currData))
+  if (timerRef.initialTime - value < 0) return
+
+  setInitialTime(timerRef.initialTime - value)
+  setCurrentTime(timerRef.currentTime - value)
 }
 
 export const startTimer = () => {
-  let timerInstance
-  timer.subscribe((prevValue) => (timerInstance = prevValue))
-  if (!timerInstance.initialTime || !timerInstance.currentTime) return
+  let timerRef
+  timer.subscribe((currData) => (timerRef = currData))
+
+  if (!timerRef.initialTime || !timerRef.currentTime) return
+
   setStatus('running')
-  timer.update((currValue) => ({
-    ...currValue,
+  timer.update((currData) => ({
+    ...currData,
     intervalId: setInterval(() => {
-      if (timerInstance.currentTime <= 0) {
+      if (timerRef.currentTime <= 0) {
         pauseTimer()
         return
       }
-      timer.update((currValue) => ({
-        ...currValue,
-        currentTime: currValue.currentTime - 1000,
+      timer.update((currData) => ({
+        ...currData,
+        currentTime: currData.currentTime - 1000,
       }))
     }, 1000),
   }))
 }
 
 export const pauseTimer = () => {
-  let timerInstance
-  timer.subscribe((prevValue) => (timerInstance = prevValue))
-  timer.update((currValue) => ({
-    ...currValue,
+  let timerRef
+  timer.subscribe((currData) => (timerRef = currData))
+
+  timer.update((currData) => ({
+    ...currData,
     status: 'idle',
   }))
-  clearInterval(timerInstance.intervalId)
+  clearInterval(timerRef.intervalId)
 }
 
 export const resetTimer = () => {
-  let timerInstance
-  timer.subscribe((prevValue) => (timerInstance = prevValue))
+  let timerRef
+  timer.subscribe((currData) => (timerRef = currData))
+
   pauseTimer()
-  setCurrentTime(timerInstance.initialTime)
+  setCurrentTime(timerRef.initialTime)
 }

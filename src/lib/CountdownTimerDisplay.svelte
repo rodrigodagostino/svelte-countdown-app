@@ -3,10 +3,10 @@
   import {
     increaseTime,
     decreaseTime,
-    timer,
     pauseTimer,
     setInitialTime,
     setCurrentTime,
+    timer,
   } from '../store'
   import BaseButton from './Button.svelte'
 
