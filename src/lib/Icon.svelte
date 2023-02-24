@@ -6,7 +6,7 @@
   import Undo from './Icon/Undo.svelte'
 
   export let icon: 'chevron-down' | 'chevron-up' | 'pause' | 'play' | 'undo'
-  export let size: 'small' | 'medium' | 'large'
+  export let size: 'small' | 'medium' | 'large' = 'small'
 
   const iconComponents = {
     'chevron-down': ChevronDown,

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from './Icon.svelte'
 
-  export let href: string | null = null
+  export let href: string = null
   export let target: '_self' | '_blank' = '_self'
   export let type: 'button' | 'submit' = 'button'
   export let variant: 'fill' | 'flat' = 'flat'
