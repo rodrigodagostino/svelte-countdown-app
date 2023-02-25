@@ -5,10 +5,10 @@
   import CountdownProgressRing from './CountdownTimerProgressRing.svelte'
   import buzzer from '../assets/audio/ding-dong.wav'
 
-  let audio
+  let audioRef
 
   $: if ($timer.currentTime <= 0 && $timer.status === 'running') {
-    audio.play()
+    audioRef.play()
   }
 
   const toggleTimerAction = () =>
@@ -29,7 +29,7 @@
       icon={$timer.status === 'idle' ? 'play' : 'pause'}
     />
   </div>
-  <audio controls bind:this={audio}>
+  <audio controls bind:this={audioRef}>
     <source src={buzzer} type="audio/wav" />
   </audio>
 </form>
