@@ -35,7 +35,9 @@
           hoursInMS + minutesInMS + event.target.value * MILLISECONDS.second
         break
     }
+
     pauseTimer()
+
     setInitialTime(totalInMS)
     setCurrentTime(totalInMS)
   }, 800)
@@ -63,7 +65,7 @@
   <input
     type="text"
     class="time-units"
-    bind:value={displayedTime.hours}
+    value={displayedTime.hours}
     maxlength="2"
     disabled={$timer.status === 'running'}
     on:focus={(e) => e.currentTarget.select()}
@@ -87,7 +89,7 @@
   <input
     type="text"
     class="time-units"
-    bind:value={displayedTime.minutes}
+    value={displayedTime.minutes}
     maxlength="2"
     disabled={$timer.status === 'running'}
     on:focus={(e) => e.currentTarget.select()}
@@ -111,7 +113,7 @@
   <input
     type="text"
     class="time-units"
-    bind:value={displayedTime.seconds}
+    value={displayedTime.seconds}
     maxlength="2"
     disabled={$timer.status === 'running'}
     on:focus={(e) => e.currentTarget.select()}
