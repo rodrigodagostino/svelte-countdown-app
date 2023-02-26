@@ -1,13 +1,13 @@
 <script lang="ts">
   import Icon from './Icon.svelte'
 
-  export let href: string = null
+  export let href: string = undefined
   export let target: '_self' | '_blank' = '_self'
   export let type: 'button' | 'submit' = 'button'
   export let variant: 'fill' | 'flat' = 'flat'
   export let size: 'small' | 'medium' | 'large' = 'small'
   export let icon: 'chevron-down' | 'chevron-up' | 'pause' | 'play' | 'undo' =
-    null
+    undefined
 </script>
 
 {#if href}
