@@ -11,7 +11,7 @@
 </script>
 
 {#if href}
-  <a class={`button button--${variant} button--${size}`} {href} {target}>
+  <a class="button button--{variant} button--{size}" {href} {target}>
     {#if icon}
       <Icon {icon} {size} />
     {/if}
@@ -22,7 +22,7 @@
     {/if}
   </a>
 {:else}
-  <button class={`button button--${variant} button--${size}`} {type} on:click>
+  <button class="button button--{variant} button--{size}" {type} on:click>
     {#if icon}
       <Icon {icon} {size} />
     {/if}
