@@ -138,19 +138,27 @@
     font-family: var(--font-main);
     font-size: 2.5rem;
     text-align: center;
-    max-width: 4rem;
+    max-width: 3.5rem;
+    margin: 0 0.25rem;
+    border-radius: 0.75rem;
     background-color: transparent;
     border-color: transparent;
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   .time-label {
     font-family: var(--font-main);
     font-size: 0.875rem;
     text-transform: uppercase;
+    cursor: default;
   }
 
   .separator {
     font-size: 2.5rem;
     margin-top: 2.6875rem;
+    cursor: default;
   }
 </style>

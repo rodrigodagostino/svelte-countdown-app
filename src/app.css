@@ -95,6 +95,11 @@ hr {
   padding: 0;
 }
 
+::selection {
+  color: var(--white);
+  background: var(--teal-600);
+}
+
 a {
   color: var(--teal-600);
   transition: color 0.32s, outline 0.32s;

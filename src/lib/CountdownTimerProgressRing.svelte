@@ -9,9 +9,6 @@
     ? null
     : (strokeDasharray / 100) *
       (100 - ($timer.currentTime * 100) / $timer.initialTime)
-  $: trackActiveSegmentTransition = `stroke-dashoffset ${
-    $timer.status === 'idle' ? '1s' : '100ms'
-  } linear`
 </script>
 
 <div class="progress-ring-container">
@@ -32,7 +29,6 @@
     />
     <circle
       class="progress-ring__track-active-segment"
-      style="transition: {trackActiveSegmentTransition}"
       stroke="url(#gradient)"
       stroke-width={strokeWidth}
       stroke-dasharray={strokeDasharray}
@@ -82,6 +78,7 @@
       fill: transparent;
       transform: rotate(-90deg);
       transform-origin: center;
+      transition: stroke-dashoffset 1s linear;
     }
 
     &__track-inner-shadow,
