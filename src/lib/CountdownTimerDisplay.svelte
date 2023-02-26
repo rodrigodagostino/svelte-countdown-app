@@ -8,7 +8,7 @@
     setCurrentTime,
     timer,
   } from '../store'
-  import BaseButton from './Button.svelte'
+  import Button from './Button.svelte'
 
   $: displayedTime = {
     hours: formatNumber(Math.floor($timer.currentTime / 1000 / 60 / 60)),
@@ -59,11 +59,7 @@
 </script>
 
 <div class="column">
-  <BaseButton
-    variant="flat"
-    icon="chevron-up"
-    on:click={() => increaseTime(MILLISECONDS.hour)}
-  />
+  <Button icon="chevron-up" on:click={() => increaseTime(MILLISECONDS.hour)} />
   <input
     type="text"
     class="time-units"
@@ -74,8 +70,7 @@
     on:keydown={checkIsNumber}
     on:input={(e) => setDisplayedTimeAsInitialAndCurrentTime(e, 'hours')}
   />
-  <BaseButton
-    variant="flat"
+  <Button
     icon="chevron-down"
     on:click={() => decreaseTime(MILLISECONDS.hour)}
   />
@@ -85,8 +80,7 @@
   <div class="separator">:</div>
 </div>
 <div class="column">
-  <BaseButton
-    variant="flat"
+  <Button
     icon="chevron-up"
     on:click={() => increaseTime(MILLISECONDS.minute)}
   />
@@ -100,8 +94,7 @@
     on:keydown={checkIsNumber}
     on:input={(e) => setDisplayedTimeAsInitialAndCurrentTime(e, 'minutes')}
   />
-  <BaseButton
-    variant="flat"
+  <Button
     icon="chevron-down"
     on:click={() => decreaseTime(MILLISECONDS.minute)}
   />
@@ -111,8 +104,7 @@
   <div class="separator">:</div>
 </div>
 <div class="column">
-  <BaseButton
-    variant="flat"
+  <Button
     icon="chevron-up"
     on:click={() => increaseTime(MILLISECONDS.second)}
   />
@@ -126,8 +118,7 @@
     on:keydown={checkIsNumber}
     on:input={(e) => setDisplayedTimeAsInitialAndCurrentTime(e, 'seconds')}
   />
-  <BaseButton
-    variant="flat"
+  <Button
     icon="chevron-down"
     on:click={() => decreaseTime(MILLISECONDS.second)}
   />

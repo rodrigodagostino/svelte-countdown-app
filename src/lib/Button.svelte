@@ -4,14 +4,20 @@
   export let href: string = undefined
   export let target: '_self' | '_blank' = '_self'
   export let type: 'button' | 'submit' = 'button'
-  export let variant: 'fill' | 'flat' = 'flat'
+  export let variant: 'flat' | 'text' = 'text'
   export let size: 'small' | 'medium' | 'large' = 'small'
   export let icon: 'chevron-down' | 'chevron-up' | 'pause' | 'play' | 'undo' =
     undefined
+  export let isActive: boolean = false
 </script>
 
 {#if href}
-  <a class="button button--{variant} button--{size}" {href} {target}>
+  <a
+    class="button button--{variant} button--{size}"
+    class:is-active={isActive}
+    {href}
+    {target}
+  >
     {#if icon}
       <Icon {icon} {size} />
     {/if}
@@ -22,7 +28,12 @@
     {/if}
   </a>
 {:else}
-  <button class="button button--{variant} button--{size}" {type} on:click>
+  <button
+    class="button button--{variant} button--{size}"
+    class:is-active={isActive}
+    {type}
+    on:click
+  >
     {#if icon}
       <Icon {icon} {size} />
     {/if}
@@ -52,16 +63,16 @@
     cursor: pointer;
 
     &:focus-visible {
-      outline: 3px dashed currentColor;
+      outline: 3px solid currentColor;
     }
 
-    &--fill {
+    &--flat {
       background-color: var(--gray-100);
       box-shadow: -0.25em -0.25em 0.5em 0.125em rgba(255, 255, 255, 0.6),
         inset 1px 1px 1px rgba(255, 255, 255, 0.6),
         /* The next line is only used to allow the box-shadow transition to work */
           inset 0.125em 0.125em 0.5em transparent,
-        inset -1px -1px 1px rgba(0, 0, 0, 0.05),
+        inset -1px -1px 1px rgba(0, 0, 0, 0.075),
         inset -2px -2px 16px -0.5rem rgba(255, 255, 255, 1),
         0.25em 0.25em 0.5em 0.125em rgba(0, 0, 0, 0.15);
 
@@ -78,9 +89,38 @@
           inset -0.125em -0.125em 0.5em rgba(255, 255, 255, 1),
           0.125em 0.125em 0.25em 0 rgba(0, 0, 0, 0.1);
       }
+
+      &.is-active {
+        background-color: var(--emerald-400);
+        box-shadow: -0.25em -0.25em 0.5em 0.125em rgba(255, 255, 255, 0.6),
+          inset 1px 1px 1px rgba(255, 255, 255, 0.6),
+          inset 0.125em 0.125em 0.5em rgba(0, 0, 0, 0.05),
+          inset -1px -1px 1px rgba(0, 0, 0, 0.075),
+          inset -2px -2px 16px -0.5rem rgba(255, 255, 255, 1),
+          0.25em 0.25em 0.5em 0.125em rgba(0, 0, 0, 0.15);
+        color: var(--white);
+
+        &:focus,
+        &:hover {
+          color: var(--white-rich);
+        }
+
+        &:focus-visible {
+          outline: 3px solid var(--emerald-400);
+        }
+
+        &:active {
+          box-shadow: -0.125em -0.125em 0.25em 0 rgba(255, 255, 255, 0.6),
+            inset 1px 1px 1px rgba(255, 255, 255, 0.6),
+            inset 0.125em 0.125em 0.5em rgba(0, 0, 0, 0.15),
+            inset -1px -1px 1px rgba(0, 0, 0, 0.075),
+            inset -0.125em -0.125em 0.5em rgba(255, 255, 255, 0.5),
+            0.125em 0.125em 0.25em 0 rgba(0, 0, 0, 0.1);
+        }
+      }
     }
 
-    &--flat {
+    &--text {
       &:focus,
       &:hover {
         color: var(--emerald-500);

@@ -39,6 +39,7 @@
   --teal-800: #115e59;
   --teal-900: #134e4a;
 
+  --white-rich: #fff;
   --white: #f3f3f5;
   --gray-050: #ededf0;
   --gray-100: #e1e1e6;
@@ -56,6 +57,7 @@
   --gray-900: #2a2a35;
   --gray-950: #22222b;
   --black: #15151a;
+  --black-rich: #000;
 }
 
 /**

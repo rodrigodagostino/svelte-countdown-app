@@ -21,12 +21,13 @@
     <CountdownTimerDisplay />
   </div>
   <div class="countdown-actions row">
-    <Button variant="fill" icon="undo" on:click={resetTimer} />
+    <Button variant="flat" icon="undo" on:click={resetTimer} />
     <Button
       type="submit"
-      variant="fill"
+      variant="flat"
       size="medium"
       icon={$timer.status === 'idle' ? 'play' : 'pause'}
+      isActive={$timer.status === 'running'}
     />
   </div>
   <audio controls bind:this={audioRef}>
