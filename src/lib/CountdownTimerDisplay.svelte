@@ -17,22 +17,20 @@
   }
 
   const setDisplayedTimeAsInitialAndCurrentTime = debounce((event, units) => {
+    const targetValue = event.currentTarget.value
     const hoursInMS = displayedTime.hours * MILLISECONDS.hour
     const minutesInMS = displayedTime.minutes * MILLISECONDS.minute
     const secondsInMS = displayedTime.seconds * MILLISECONDS.second
     let totalInMS = 0
     switch (units) {
       case 'hours':
-        totalInMS =
-          event.target.value * MILLISECONDS.hour + minutesInMS + secondsInMS
+        totalInMS = targetValue * MILLISECONDS.hour + minutesInMS + secondsInMS
         break
       case 'minutes':
-        totalInMS =
-          hoursInMS + event.target.value * MILLISECONDS.minute + secondsInMS
+        totalInMS = hoursInMS + targetValue * MILLISECONDS.minute + secondsInMS
         break
       case 'seconds':
-        totalInMS =
-          hoursInMS + minutesInMS + event.target.value * MILLISECONDS.second
+        totalInMS = hoursInMS + minutesInMS + targetValue * MILLISECONDS.second
         break
     }
 
