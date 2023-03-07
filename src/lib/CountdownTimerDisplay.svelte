@@ -18,19 +18,19 @@
 
   const setDisplayedTimeAsInitialAndCurrentTime = debounce((event, units) => {
     const targetValue = event.currentTarget.value
-    const hoursInMS = displayedTime.hours * MILLISECONDS.hour
-    const minutesInMS = displayedTime.minutes * MILLISECONDS.minute
-    const secondsInMS = displayedTime.seconds * MILLISECONDS.second
+    const hoursInMS = displayedTime.hours * MILLISECONDS.HOUR
+    const minutesInMS = displayedTime.minutes * MILLISECONDS.MINUTE
+    const secondsInMS = displayedTime.seconds * MILLISECONDS.SECOND
     let totalInMS = 0
     switch (units) {
       case 'hours':
-        totalInMS = targetValue * MILLISECONDS.hour + minutesInMS + secondsInMS
+        totalInMS = targetValue * MILLISECONDS.HOUR + minutesInMS + secondsInMS
         break
       case 'minutes':
-        totalInMS = hoursInMS + targetValue * MILLISECONDS.minute + secondsInMS
+        totalInMS = hoursInMS + targetValue * MILLISECONDS.MINUTE + secondsInMS
         break
       case 'seconds':
-        totalInMS = hoursInMS + minutesInMS + targetValue * MILLISECONDS.second
+        totalInMS = hoursInMS + minutesInMS + targetValue * MILLISECONDS.SECOND
         break
     }
 
@@ -52,14 +52,14 @@
   }
 
   const MILLISECONDS = {
-    hour: 3600000,
-    minute: 60000,
-    second: 1000,
+    HOUR: 3600000,
+    MINUTE: 60000,
+    SECOND: 1000,
   }
 </script>
 
 <div class="column">
-  <Button icon="chevron-up" on:click={() => increaseTime(MILLISECONDS.hour)} />
+  <Button icon="chevron-up" on:click={() => increaseTime(MILLISECONDS.HOUR)} />
   <input
     type="text"
     class="time-units"
@@ -72,7 +72,7 @@
   />
   <Button
     icon="chevron-down"
-    on:click={() => decreaseTime(MILLISECONDS.hour)}
+    on:click={() => decreaseTime(MILLISECONDS.HOUR)}
   />
   <span class="time-label">H</span>
 </div>
@@ -82,7 +82,7 @@
 <div class="column">
   <Button
     icon="chevron-up"
-    on:click={() => increaseTime(MILLISECONDS.minute)}
+    on:click={() => increaseTime(MILLISECONDS.MINUTE)}
   />
   <input
     type="text"
@@ -96,7 +96,7 @@
   />
   <Button
     icon="chevron-down"
-    on:click={() => decreaseTime(MILLISECONDS.minute)}
+    on:click={() => decreaseTime(MILLISECONDS.MINUTE)}
   />
   <span class="time-label">M</span>
 </div>
@@ -106,7 +106,7 @@
 <div class="column">
   <Button
     icon="chevron-up"
-    on:click={() => increaseTime(MILLISECONDS.second)}
+    on:click={() => increaseTime(MILLISECONDS.SECOND)}
   />
   <input
     type="text"
@@ -120,7 +120,7 @@
   />
   <Button
     icon="chevron-down"
-    on:click={() => decreaseTime(MILLISECONDS.second)}
+    on:click={() => decreaseTime(MILLISECONDS.SECOND)}
   />
   <span class="time-label">S</span>
 </div>
