@@ -8,7 +8,25 @@
     setCurrentTime,
     timer,
   } from '../store'
+
   import Button from './Button.svelte'
+
+  const formatNumber = (num: number) => (num < 10 ? `0${num}` : num)
+
+  const checkIsNumber = (event: KeyboardEvent) => {
+    const keyCode = event.keyCode
+    if (
+      (!(keyCode >= 48) && !(keyCode <= 57)) ||
+      (!(keyCode >= 96) && !(keyCode <= 105))
+    )
+      event.preventDefault()
+  }
+
+  const MILLISECONDS = {
+    HOUR: 3600000,
+    MINUTE: 60000,
+    SECOND: 1000,
+  }
 
   $: displayedTime = {
     hours: formatNumber(Math.floor($timer.currentTime / 1000 / 60 / 60)),
@@ -17,10 +35,10 @@
   }
 
   const setDisplayedTimeAsInitialAndCurrentTime = debounce((event, units) => {
-    const targetValue = event.currentTarget.value
-    const hoursInMS = displayedTime.hours * MILLISECONDS.HOUR
-    const minutesInMS = displayedTime.minutes * MILLISECONDS.MINUTE
-    const secondsInMS = displayedTime.seconds * MILLISECONDS.SECOND
+    const targetValue = +event.target.value
+    const hoursInMS = +displayedTime.hours * MILLISECONDS.HOUR
+    const minutesInMS = +displayedTime.minutes * MILLISECONDS.MINUTE
+    const secondsInMS = +displayedTime.seconds * MILLISECONDS.SECOND
     let totalInMS = 0
     switch (units) {
       case 'hours':
@@ -39,23 +57,6 @@
     setInitialTime(totalInMS)
     setCurrentTime(totalInMS)
   }, 800)
-
-  const formatNumber = (num) => (num < 10 ? `0${num}` : num)
-
-  const checkIsNumber = (event) => {
-    const keyCode = event.keyCode
-    if (
-      (!(keyCode >= 48) && !(keyCode <= 57)) ||
-      (!(keyCode >= 96) && !(keyCode <= 105))
-    )
-      event.preventDefault()
-  }
-
-  const MILLISECONDS = {
-    HOUR: 3600000,
-    MINUTE: 60000,
-    SECOND: 1000,
-  }
 </script>
 
 <div class="column">
