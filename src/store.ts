@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store'
+import { writable, get } from 'svelte/store'
 
 interface Timer {
   status: 'idle' | 'running'
@@ -14,60 +14,59 @@ export const timer = writable<Timer>({
   intervalId: null,
 })
 
-const setStatus = (value) => {
+const setStatus = (value: Timer['status']) => {
   timer.update((currData) => ({
     ...currData,
     status: value,
   }))
 }
 
-export const setInitialTime = (value) => {
+export const setInitialTime = (value: Timer['initialTime']) => {
   timer.update((currData) => ({
     ...currData,
     initialTime: value,
   }))
 }
 
-export const setCurrentTime = (value) => {
+export const setCurrentTime = (value: Timer['currentTime']) => {
   timer.update((currData) => ({
     ...currData,
     currentTime: value,
   }))
 }
 
-export const increaseTime = (value) => {
+export const increaseTime = (value: number) => {
   pauseTimer()
 
-  let timerRef
-  timer.subscribe((currData) => (timerRef = currData))
+  const $timer = get(timer)
 
-  setInitialTime(timerRef.currentTime + value)
-  setCurrentTime(timerRef.currentTime + value)
+  setInitialTime($timer.currentTime + value)
+  setCurrentTime($timer.currentTime + value)
 }
 
-export const decreaseTime = (value) => {
+export const decreaseTime = (value: number) => {
   pauseTimer()
-  let timerRef
 
-  timer.subscribe((currData) => (timerRef = currData))
-  if (timerRef.initialTime - value < 0) return
+  const $timer = get(timer)
+  if ($timer.initialTime - value < 0) return
 
-  setInitialTime(timerRef.initialTime - value)
-  setCurrentTime(timerRef.currentTime - value)
+  setInitialTime($timer.initialTime - value)
+  setCurrentTime($timer.currentTime - value)
 }
 
 export const startTimer = () => {
-  let timerRef
-  timer.subscribe((currData) => (timerRef = currData))
+  let $timer
+  const unsubscribe = timer.subscribe((currData) => ($timer = currData))
 
-  if (!timerRef.initialTime || !timerRef.currentTime) return
+  if (!$timer.initialTime || !$timer.currentTime) return
 
   setStatus('running')
   timer.update((currData) => ({
     ...currData,
     intervalId: setInterval(() => {
-      if (timerRef.currentTime <= 0) {
+      if ($timer.currentTime <= 0) {
         pauseTimer()
+        unsubscribe()
         return
       }
       timer.update((currData) => ({
@@ -79,20 +78,18 @@ export const startTimer = () => {
 }
 
 export const pauseTimer = () => {
-  let timerRef
-  timer.subscribe((currData) => (timerRef = currData))
+  const $timer = get(timer)
 
   timer.update((currData) => ({
     ...currData,
     status: 'idle',
   }))
-  clearInterval(timerRef.intervalId)
+  clearInterval($timer.intervalId)
 }
 
 export const resetTimer = () => {
-  let timerRef
-  timer.subscribe((currData) => (timerRef = currData))
+  const $timer = get(timer)
 
   pauseTimer()
-  setCurrentTime(timerRef.initialTime)
+  setCurrentTime($timer.initialTime)
 }
