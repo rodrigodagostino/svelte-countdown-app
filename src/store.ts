@@ -1,34 +1,34 @@
 import { writable, get } from 'svelte/store'
 
-interface Timer {
+interface ITimer {
   status: 'idle' | 'running'
   initialTime: number
   currentTime: number
   intervalId: ReturnType<typeof setInterval>
 }
 
-export const timer = writable<Timer>({
+export const timer = writable<ITimer>({
   status: 'idle',
   initialTime: 0,
   currentTime: 0,
   intervalId: null,
 })
 
-const setStatus = (value: Timer['status']) => {
+const setStatus = (value: ITimer['status']) => {
   timer.update((currData) => ({
     ...currData,
     status: value,
   }))
 }
 
-export const setInitialTime = (value: Timer['initialTime']) => {
+export const setInitialTime = (value: ITimer['initialTime']) => {
   timer.update((currData) => ({
     ...currData,
     initialTime: value,
   }))
 }
 
-export const setCurrentTime = (value: Timer['currentTime']) => {
+export const setCurrentTime = (value: ITimer['currentTime']) => {
   timer.update((currData) => ({
     ...currData,
     currentTime: value,

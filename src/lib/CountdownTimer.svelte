@@ -1,11 +1,12 @@
 <script lang="ts">
   import { pauseTimer, resetTimer, startTimer, timer } from '../store'
+
   import Button from './Button.svelte'
   import CountdownTimerDisplay from './CountdownTimerDisplay.svelte'
   import CountdownProgressRing from './CountdownTimerProgressRing.svelte'
   import buzzer from '../assets/audio/ding-dong.wav'
 
-  let audioRef
+  let audioRef: HTMLAudioElement
 
   $: if ($timer.currentTime <= 0 && $timer.status === 'running') {
     audioRef.play()
