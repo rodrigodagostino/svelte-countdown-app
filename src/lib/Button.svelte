@@ -91,7 +91,11 @@
       }
 
       &.is-active {
-        background-color: var(--emerald-400);
+        background: linear-gradient(
+          135deg,
+          var(--emerald-400),
+          var(--teal-500)
+        );
         box-shadow: -0.25em -0.25em 0.5em 0.125em rgba(255, 255, 255, 0.6),
           inset 1px 1px 1px rgba(255, 255, 255, 0.6),
           inset 0.125em 0.125em 0.5em rgba(0, 0, 0, 0.05),
