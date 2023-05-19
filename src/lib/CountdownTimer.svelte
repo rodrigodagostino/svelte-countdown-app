@@ -12,8 +12,7 @@
     audioRef.play()
   }
 
-  const toggleTimerAction = () =>
-    $timer.status === 'idle' ? startTimer() : pauseTimer()
+  const toggleTimerAction = () => ($timer.status === 'idle' ? startTimer() : pauseTimer())
 </script>
 
 <form class="countdown" on:submit|preventDefault={toggleTimerAction}>

@@ -15,10 +15,7 @@
 
   const checkIsNumber = (event: KeyboardEvent) => {
     const keyCode = event.keyCode
-    if (
-      (!(keyCode >= 48) && !(keyCode <= 57)) ||
-      (!(keyCode >= 96) && !(keyCode <= 105))
-    )
+    if ((!(keyCode >= 48) && !(keyCode <= 57)) || (!(keyCode >= 96) && !(keyCode <= 105)))
       event.preventDefault()
   }
 
@@ -71,20 +68,14 @@
     on:keydown={checkIsNumber}
     on:input={(e) => setDisplayedTimeAsInitialAndCurrentTime(e, 'hours')}
   />
-  <Button
-    icon="chevron-down"
-    on:click={() => decreaseTime(MILLISECONDS.HOUR)}
-  />
+  <Button icon="chevron-down" on:click={() => decreaseTime(MILLISECONDS.HOUR)} />
   <span class="time-label">H</span>
 </div>
 <div class="column">
   <div class="separator">:</div>
 </div>
 <div class="column">
-  <Button
-    icon="chevron-up"
-    on:click={() => increaseTime(MILLISECONDS.MINUTE)}
-  />
+  <Button icon="chevron-up" on:click={() => increaseTime(MILLISECONDS.MINUTE)} />
   <input
     type="text"
     class="time-units"
@@ -95,20 +86,14 @@
     on:keydown={checkIsNumber}
     on:input={(e) => setDisplayedTimeAsInitialAndCurrentTime(e, 'minutes')}
   />
-  <Button
-    icon="chevron-down"
-    on:click={() => decreaseTime(MILLISECONDS.MINUTE)}
-  />
+  <Button icon="chevron-down" on:click={() => decreaseTime(MILLISECONDS.MINUTE)} />
   <span class="time-label">M</span>
 </div>
 <div class="column">
   <div class="separator">:</div>
 </div>
 <div class="column">
-  <Button
-    icon="chevron-up"
-    on:click={() => increaseTime(MILLISECONDS.SECOND)}
-  />
+  <Button icon="chevron-up" on:click={() => increaseTime(MILLISECONDS.SECOND)} />
   <input
     type="text"
     class="time-units"
@@ -119,10 +104,7 @@
     on:keydown={checkIsNumber}
     on:input={(e) => setDisplayedTimeAsInitialAndCurrentTime(e, 'seconds')}
   />
-  <Button
-    icon="chevron-down"
-    on:click={() => decreaseTime(MILLISECONDS.SECOND)}
-  />
+  <Button icon="chevron-down" on:click={() => decreaseTime(MILLISECONDS.SECOND)} />
   <span class="time-label">S</span>
 </div>
 

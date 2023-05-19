@@ -7,8 +7,7 @@
   let strokeDasharray = (diameter - strokeWidth) * Math.PI
   $: strokeDashoffset = !$timer.initialTime
     ? null
-    : (strokeDasharray / 100) *
-      (100 - ($timer.currentTime * 100) / $timer.initialTime)
+    : (strokeDasharray / 100) * (100 - ($timer.currentTime * 100) / $timer.initialTime)
 </script>
 
 <div class="progress-ring-container">
@@ -40,8 +39,7 @@
   </svg>
   <div
     class="progress-ring__track-inner-shadow"
-    style="width: {diameter - strokeWidth * 2}px; height: {diameter -
-      strokeWidth * 2}px"
+    style="width: {diameter - strokeWidth * 2}px; height: {diameter - strokeWidth * 2}px"
   />
   <div
     class="progress-ring__track-outer-shadow"
@@ -59,8 +57,7 @@
     padding: 1rem;
     border-radius: 50%;
     box-shadow: -1rem -1rem 1.5rem 0.125rem rgba(255, 255, 255, 0.6),
-      inset 1px 1px 1px rgba(255, 255, 255, 0.6),
-      inset -1px -1px 1px rgba(0, 0, 0, 0.05),
+      inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(0, 0, 0, 0.05),
       1rem 1rem 1.5rem 0.125rem rgba(0, 0, 0, 0.15);
   }
 
@@ -93,16 +90,13 @@
 
     &__track-inner-shadow {
       box-shadow: -2px -2px 4px 1px rgba(255, 255, 255, 0.6),
-        inset 1px 1px 1px rgba(255, 255, 255, 0.6),
-        inset -1px -1px 1px rgba(0, 0, 0, 0.05),
+        inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(0, 0, 0, 0.05),
         2px 2px 4px 1px rgba(0, 0, 0, 0.1);
     }
 
     &__track-outer-shadow {
-      box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.05),
-        inset -2px -2px 4px rgba(255, 255, 255, 0.6),
-        inset 2px 2px 4px rgba(0, 0, 0, 0.1),
-        1px 1px 1px rgba(255, 255, 255, 0.6);
+      box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(255, 255, 255, 0.6),
+        inset 2px 2px 4px rgba(0, 0, 0, 0.1), 1px 1px 1px rgba(255, 255, 255, 0.6);
     }
   }
 </style>
