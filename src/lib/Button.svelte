@@ -1,49 +1,38 @@
 <script lang="ts">
   import Icon from './Icon.svelte'
 
-  export let href: string = undefined
-  export let target: '_self' | '_blank' = '_self'
-  export let type: 'button' | 'submit' = 'button'
   export let variant: 'flat' | 'text' = 'text'
   export let size: 'small' | 'medium' | 'large' = 'small'
+  export let href: string | undefined = undefined
+  export let target: '_self' | '_blank' | undefined = href ? '_self' : undefined
+  export let type: 'button' | 'submit' | undefined = !href
+    ? 'button'
+    : undefined
   export let icon: 'chevron-down' | 'chevron-up' | 'pause' | 'play' | 'undo' =
     undefined
   export let isActive: boolean = false
+
+  const element = href ? 'a' : 'button'
 </script>
 
-{#if href}
-  <a
-    class="button button--{variant} button--{size}"
-    class:is-active={isActive}
-    {href}
-    {target}
-  >
-    {#if icon}
-      <Icon {icon} {size} />
-    {/if}
-    {#if $$slots.default}
-      <span class="button__text">
-        <slot />
-      </span>
-    {/if}
-  </a>
-{:else}
-  <button
-    class="button button--{variant} button--{size}"
-    class:is-active={isActive}
-    {type}
-    on:click
-  >
-    {#if icon}
-      <Icon {icon} {size} />
-    {/if}
-    {#if $$slots.default}
-      <span class="button__text">
-        <slot />
-      </span>
-    {/if}
-  </button>
-{/if}
+<svelte:element
+  this={element}
+  class="button button--{variant} button--{size}"
+  class:is-active={isActive}
+  {href}
+  {target}
+  {type}
+  on:click
+>
+  {#if icon}
+    <Icon {icon} {size} />
+  {/if}
+  {#if $$slots.default}
+    <span class="button__text">
+      <slot />
+    </span>
+  {/if}
+</svelte:element>
 
 <style lang="scss">
   .button {
