@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { debounce } from 'lodash'
+  import { debounce } from 'lodash';
   import {
     increaseTime,
     decreaseTime,
@@ -7,53 +7,53 @@
     setInitialTime,
     setCurrentTime,
     timer,
-  } from '../store'
+  } from '../store';
 
-  import Button from './Button.svelte'
+  import Button from './Button.svelte';
 
-  const formatNumber = (num: number) => (num < 10 ? `0${num}` : num)
+  const formatNumber = (num: number) => (num < 10 ? `0${num}` : num);
 
   const checkIsNumber = (event: KeyboardEvent) => {
-    const keyCode = event.keyCode
+    const keyCode = event.keyCode;
     if ((!(keyCode >= 48) && !(keyCode <= 57)) || (!(keyCode >= 96) && !(keyCode <= 105)))
-      event.preventDefault()
-  }
+      event.preventDefault();
+  };
 
   const MILLISECONDS = {
     HOUR: 3600000,
     MINUTE: 60000,
     SECOND: 1000,
-  }
+  };
 
   $: displayedTime = {
     hours: formatNumber(Math.floor($timer.currentTime / 1000 / 60 / 60)),
     minutes: formatNumber(Math.floor(($timer.currentTime / 1000 / 60) % 60)),
     seconds: formatNumber(Math.ceil($timer.currentTime / 1000) % 60),
-  }
+  };
 
   const setDisplayedTimeAsInitialAndCurrentTime = debounce((event, units) => {
-    const targetValue = +event.target.value
-    const hoursInMS = +displayedTime.hours * MILLISECONDS.HOUR
-    const minutesInMS = +displayedTime.minutes * MILLISECONDS.MINUTE
-    const secondsInMS = +displayedTime.seconds * MILLISECONDS.SECOND
-    let totalInMS = 0
+    const targetValue = +event.target.value;
+    const hoursInMS = +displayedTime.hours * MILLISECONDS.HOUR;
+    const minutesInMS = +displayedTime.minutes * MILLISECONDS.MINUTE;
+    const secondsInMS = +displayedTime.seconds * MILLISECONDS.SECOND;
+    let totalInMS = 0;
     switch (units) {
       case 'hours':
-        totalInMS = targetValue * MILLISECONDS.HOUR + minutesInMS + secondsInMS
-        break
+        totalInMS = targetValue * MILLISECONDS.HOUR + minutesInMS + secondsInMS;
+        break;
       case 'minutes':
-        totalInMS = hoursInMS + targetValue * MILLISECONDS.MINUTE + secondsInMS
-        break
+        totalInMS = hoursInMS + targetValue * MILLISECONDS.MINUTE + secondsInMS;
+        break;
       case 'seconds':
-        totalInMS = hoursInMS + minutesInMS + targetValue * MILLISECONDS.SECOND
-        break
+        totalInMS = hoursInMS + minutesInMS + targetValue * MILLISECONDS.SECOND;
+        break;
     }
 
-    pauseTimer()
+    pauseTimer();
 
-    setInitialTime(totalInMS)
-    setCurrentTime(totalInMS)
-  }, 800)
+    setInitialTime(totalInMS);
+    setCurrentTime(totalInMS);
+  }, 800);
 </script>
 
 <div class="column">

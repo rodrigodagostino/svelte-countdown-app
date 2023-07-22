@@ -6,7 +6,8 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  src: url("./assets/fonts/poppins-v20-latin-400.woff2") format("woff2"),
+  src:
+    url("./assets/fonts/poppins-v20-latin-400.woff2") format("woff2"),
     url("./assets/fonts/poppins-v20-latin-400.woff") format("woff");
 }
 
@@ -99,7 +100,9 @@ hr {
 
 a {
   color: var(--teal-600);
-  transition: color 0.32s, outline 0.32s;
+  transition:
+    color 0.32s,
+    outline 0.32s;
   outline: 1px dotted transparent;
 }
 

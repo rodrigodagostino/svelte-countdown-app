@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { pauseTimer, resetTimer, startTimer, timer } from '../store'
+  import { pauseTimer, resetTimer, startTimer, timer } from '../store';
 
-  import Button from './Button.svelte'
-  import CountdownTimerDisplay from './CountdownTimerDisplay.svelte'
-  import CountdownProgressRing from './CountdownTimerProgressRing.svelte'
-  import buzzer from '../assets/audio/ding-dong.wav'
+  import Button from './Button.svelte';
+  import CountdownTimerDisplay from './CountdownTimerDisplay.svelte';
+  import CountdownProgressRing from './CountdownTimerProgressRing.svelte';
+  import buzzer from '../assets/audio/ding-dong.wav';
 
-  let audioRef: HTMLAudioElement
+  let audioRef: HTMLAudioElement;
 
   $: if ($timer.currentTime <= 0 && $timer.status === 'running') {
-    audioRef.play()
+    audioRef.play();
   }
 
-  const toggleTimerAction = () => ($timer.status === 'idle' ? startTimer() : pauseTimer())
+  const toggleTimerAction = () => ($timer.status === 'idle' ? startTimer() : pauseTimer());
 </script>
 
 <form class="countdown" on:submit|preventDefault={toggleTimerAction}>

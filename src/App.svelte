@@ -1,6 +1,6 @@
 <script lang="ts">
-  import svelteLogo from './assets/images/svelte-logo.svg'
-  import CountdownTimer from './lib/CountdownTimer.svelte'
+  import svelteLogo from './assets/images/svelte-logo.svg';
+  import CountdownTimer from './lib/CountdownTimer.svelte';
 </script>
 
 <main class="app-main">

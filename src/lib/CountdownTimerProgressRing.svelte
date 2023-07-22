@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { timer } from '../store'
+  import { timer } from '../store';
 
-  export let diameter: number = 300
-  export let strokeWidth: number = 16
+  export let diameter: number = 300;
+  export let strokeWidth: number = 16;
 
-  let strokeDasharray = (diameter - strokeWidth) * Math.PI
+  let strokeDasharray = (diameter - strokeWidth) * Math.PI;
   $: strokeDashoffset = !$timer.initialTime
     ? null
-    : (strokeDasharray / 100) * (100 - ($timer.currentTime * 100) / $timer.initialTime)
+    : (strokeDasharray / 100) * (100 - ($timer.currentTime * 100) / $timer.initialTime);
 </script>
 
 <div class="progress-ring-container">
@@ -56,8 +56,10 @@
     z-index: -1;
     padding: 1rem;
     border-radius: 50%;
-    box-shadow: -1rem -1rem 1.5rem 0.125rem rgba(255, 255, 255, 0.6),
-      inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(0, 0, 0, 0.05),
+    box-shadow:
+      -1rem -1rem 1.5rem 0.125rem rgba(255, 255, 255, 0.6),
+      inset 1px 1px 1px rgba(255, 255, 255, 0.6),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.05),
       1rem 1rem 1.5rem 0.125rem rgba(0, 0, 0, 0.15);
   }
 
@@ -89,14 +91,19 @@
     }
 
     &__track-inner-shadow {
-      box-shadow: -2px -2px 4px 1px rgba(255, 255, 255, 0.6),
-        inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(0, 0, 0, 0.05),
+      box-shadow:
+        -2px -2px 4px 1px rgba(255, 255, 255, 0.6),
+        inset 1px 1px 1px rgba(255, 255, 255, 0.6),
+        inset -1px -1px 1px rgba(0, 0, 0, 0.05),
         2px 2px 4px 1px rgba(0, 0, 0, 0.1);
     }
 
     &__track-outer-shadow {
-      box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(255, 255, 255, 0.6),
-        inset 2px 2px 4px rgba(0, 0, 0, 0.1), 1px 1px 1px rgba(255, 255, 255, 0.6);
+      box-shadow:
+        -1px -1px 1px rgba(0, 0, 0, 0.05),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.6),
+        inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+        1px 1px 1px rgba(255, 255, 255, 0.6);
     }
   }
 </style>
