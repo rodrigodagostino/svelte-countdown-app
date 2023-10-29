@@ -164,7 +164,7 @@ body {
   font-family: var(--font-main);
   font-size: 1rem;
   color: var(--gray-600);
-  background-color: var(--gray-100);
+  background-color: var(--gray-150);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

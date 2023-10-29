@@ -134,6 +134,7 @@
     font-family: var(--font-main);
     font-size: 0.875rem;
     text-transform: uppercase;
+    text-shadow: 0 1px 1px rgba(45, 35, 66, 0.16);
     cursor: default;
   }
 
