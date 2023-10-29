@@ -11,7 +11,12 @@
 </script>
 
 <div class="progress-ring-container">
-  <svg class="progress-ring" width={diameter} height={diameter}>
+  <svg
+    class="progress-ring"
+    class:is-running={$timer.status === 'running'}
+    width={diameter}
+    height={diameter}
+  >
     <defs>
       <linearGradient id="gradient" x1="100%" y1="0%" x2="0%" y2="100%">
         <stop offset="50%" stop-color="var(--emerald-400)" />
@@ -104,6 +109,12 @@
         inset -2px -2px 4px rgba(255, 255, 255, 0.6),
         inset 2px 2px 4px rgba(0, 0, 0, 0.1),
         1px 1px 1px rgba(255, 255, 255, 0.6);
+    }
+
+    &.is-running {
+      .progress-ring__track-active-segment {
+        transition: stroke-dashoffset 100ms linear;
+      }
     }
   }
 </style>
