@@ -63,7 +63,7 @@
     border-radius: 50%;
     background-color: var(--gray-100);
     box-shadow:
-      -1rem -1rem 1.5rem 0.25rem rgba(255, 255, 255, 0.6),
+      -1rem -1rem 1.5rem 0.25rem rgba(255, 255, 255, 0.52),
       inset 1px 1px 1px rgba(255, 255, 255, 0.6),
       inset -1px -1px 1px rgba(0, 0, 0, 0.05),
       1rem 1rem 1.5rem 0.125rem rgba(0, 0, 0, 0.15);
