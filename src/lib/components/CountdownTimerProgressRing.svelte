@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { timer } from '../store';
+  import { timer } from '../../store';
 
   export let diameter: number = 300;
   export let strokeWidth: number = 16;

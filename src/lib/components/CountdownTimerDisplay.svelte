@@ -7,7 +7,7 @@
     setInitialTime,
     setCurrentTime,
     timer,
-  } from '../store';
+  } from '../../store';
 
   import Button from './Button.svelte';
 

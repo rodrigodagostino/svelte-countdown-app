@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { pauseTimer, resetTimer, startTimer, timer } from '../store';
+  import { pauseTimer, resetTimer, startTimer, timer } from '../../store';
 
   import Button from './Button.svelte';
   import CountdownTimerDisplay from './CountdownTimerDisplay.svelte';
